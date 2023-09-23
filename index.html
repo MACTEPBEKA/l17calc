@@ -14,6 +14,11 @@
 	}
 	.Column {
 		display: table-cell;
+		width: 100%;
+	}
+	.div-border {
+		border: 4px solid black;
+		padding: 8px; 
 	}
 	input::-webkit-inner-spin-button {
 		-webkit-appearance: none;
@@ -62,7 +67,7 @@
 	}
 </script>	
 	
-	<div name="dmg_calc">
+	<div name="dmg_calc" class="div-border">
 		<div class="Row">
 			<div class="Column">
 				Уровень
@@ -88,16 +93,16 @@
 		</div>
 		<div class="Row">
 			<div class="Column">
-				<input id="lvl" type="number" >
+				<input id="lvl" type="number" style="width: 70%">
 			</div>
 			<div class="Column">
-				<input id="base" type="number" >
+				<input id="base" type="number" style="width: 70%">
 			</div>
 			<div class="Column">
-				<input id="att" type="number" >
+				<input id="att" type="number" style="width: 70%">
 			</div>
 			<div class="Column">
-				<input id="def" type="number" >
+				<input id="def" type="number" style="width: 70%">
 			</div>
 			<div class="Column">
 				<select id="type">
@@ -191,11 +196,15 @@
 			</div>
 		</div>
 		
-		<div style="margin-top: 20px">
-		<button id="calc_dmg" onclick="get_dmg()">Вычислить урон</button>
-		<button id="calc_dmg" onclick="test()">Тест</button>
-		</div>
 		<div class="Row" style="margin-top: 20px">
+			<div class="Column">
+			</div>
+			<div class="Column">
+			</div>
+			<div class="Column">
+			</div>
+			<div class="Column">
+			</div>
 			<div class="Column">
 				Минимальный урон
 			</div>
@@ -205,29 +214,23 @@
 			<div class="Column">
 				Максимальный урон c крита
 			</div>
-			<div class="Column">
-			</div>
-			<div class="Column">
-			</div>
-			<div class="Column">
-			</div>
-			<div class="Column">
-			</div>
 		</div>
 		<div class="Row">
+			<div class="Column">
+				<button id="calc_dmg" onclick="get_dmg()">Вычислить урон</button>
+			</div>
+			<div class="Column">
+				<button id="calc_dmg" onclick="test()" style="width: 70%">Тест</button>
+			</div>
+			<div class="Column">
+			</div>
+			<div class="Column">
+			</div>
 			<div class="Column" id="min_dmg">
 			</div>
 			<div class="Column" id="max_dmg">
 			</div>
 			<div class="Column" id="maxcrit_dmg">
-			</div>
-			<div class="Column">
-			</div>
-			<div class="Column">
-			</div>
-			<div class="Column">
-			</div>
-			<div class="Column">
 			</div>
 		</div>
 	</div>
