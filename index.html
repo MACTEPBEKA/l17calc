@@ -33,6 +33,7 @@
 			stab_coef = 1;
 		}
 		
+		
 		switch (type.value) {
 			case "x025":
 				type_coef = 0.25;
@@ -54,9 +55,137 @@
 				break;
 		}
 		
-		min_dmg.textContent = ((2*lvl.value + 10)/250*att.value/def.value*base.value + 2)*stab_coef*type_coef*0.85;
-		max_dmg.textContent = ((2*lvl.value + 10)/250*att.value/def.value*base.value + 2)*stab_coef*type_coef*1;
-		maxcrit_dmg.textContent = ((2*lvl.value + 10)/250*att.value/def.value*base.value + 2)*stab_coef*type_coef*1.5;
+		switch (mod_att.value) {
+			case "-6":
+				att_stat = att.value*2/(2+6);
+				break;
+			case "-5":
+				att_stat = att.value*2/(2+5);
+				break;
+			case "-4":
+				att_stat = att.value*2/(2+4);
+				break;
+			case "-3":
+				att_stat = att.value*2/(2+3);
+				break;
+			case "-2":
+				att_stat = att.value*2/(2+2);
+				break;
+			case "-1":
+				att_stat = att.value*2/(2+1);
+				break;
+			case "0":
+				att_stat = att.value;
+				break;
+			case "+1":
+				att_stat = att.value*(2+1)/2;
+				break;
+			case "+2":
+				att_stat = att.value*(2+2)/2;
+				break;
+			case "+3":
+				att_stat = att.value*(2+3)/2;
+				break;
+			case "+4":
+				att_stat = att.value*(2+4)/2;
+				break;
+			case "+5":
+				att_stat = att.value*(2+5)/2;
+				break;
+			case "+6":
+				att_stat = att.value*(2+6)/2;
+				break;
+			default:
+				alert("Ошибка при вычислении модификацированного стата атаки");
+				break;
+		}
+		
+		switch (mod_def.value) {
+			case "-6":
+				def_stat = def.value*2/(2+6);
+				break;
+			case "-5":
+				def_stat = def.value*2/(2+5);
+				break;
+			case "-4":
+				def_stat = def.value*2/(2+4);
+				break;
+			case "-3":
+				def_stat = def.value*2/(2+3);
+				break;
+			case "-2":
+				def_stat = def.value*2/(2+2);
+				break;
+			case "-1":
+				def_stat = def.value*2/(2+1);
+				break;
+			case "0":
+				def_stat = def.value;
+				break;
+			case "+1":
+				def_stat = def.value*(2+1)/2;
+				break;
+			case "+2":
+				def_stat = def.value*(2+2)/2;
+				break;
+			case "+3":
+				def_stat = def.value*(2+3)/2;
+				break;
+			case "+4":
+				def_stat = def.value*(2+4)/2;
+				break;
+			case "+5":
+				def_stat = def.value*(2+5)/2;
+				break;
+			case "+6":
+				def_stat = def.value*(2+6)/2;
+				break;
+			default:
+				alert("Ошибка при вычислении модификацированного стата защиты");
+				break;
+		}
+		
+		if (in_fire.checked){
+			in_fire_coef = 0.9;
+		} else {
+			in_fire_coef = 1;
+		}
+				
+		if (screen.checked){
+			screen_coef = 0.9;
+		} else {
+			screen_coef = 1;
+		}
+		
+		if (absorb.checked){
+			absorb_coef = 0.9;
+		} else {
+			absorb_coef = 1;
+		}
+		
+		switch (item.value) {
+			case "Отсутствует":
+				item_coef = 1;
+				break;
+			case "Стабовый":
+				item_coef = 1.1;
+				break;
+			case "Сфера ярости":
+				item_coef = 1.25;
+				break;
+			default:
+				alert("Ошибка при вычислении усиления предметом");
+				break;
+		}
+		
+		oth = 1 * absorb_coef * screen_coef * in_fire_coef * item_coef;
+		
+		dmg = ((2*lvl.value + 10)/250*att_stat/def_stat*base.value + 2)*stab_coef*type_coef*oth
+		
+		min_dmg.textContent = Math.floor(dmg * 0.85);
+		max_dmg.textContent = Math.floor(dmg);
+		maxcrit_dmg.textContent = Math.floor(dmg * 1.5);
+		
 	}
 	function test() {
 		lvl.value = 78;
@@ -64,6 +193,19 @@
 		def.value = 261;
 		base.value = 40;
 		stab.checked = true;
+	}
+	function clear_calc() {
+		lvl.value = null;
+		att.value = null;
+		def.value = null;
+		base.value = null;
+		stab.checked = false;
+		item.value = "Отсутствует";
+		in_fire.checked = false;
+		screen.checked = false;
+		mod_att.value = "0";
+		mod_def.value = "0";
+		absorb.checked = false;
 	}
 </script>	
 	
@@ -118,9 +260,9 @@
 			</div>
 			<div class="Column">
 				<select id="item">
-					<option value="None" selected="selected">Отсутствует</option>
-					<option value="x1.1">Стабовый</option>
-					<option value="x1.25">Сфера ярости</option>
+					<option value="Отсутствует" selected="selected">Отсутствует</option>
+					<option value="Стабовый">Стабовый</option>
+					<option value="Сфера ярости">Сфера ярости</option>
 				</select>
 			</div>
 		</div>
@@ -154,36 +296,36 @@
 			</div>
 			<div class="Column">
 				<select id="mod_att">
-					<option value="x-6">-6</option>
-					<option value="x-5">-5</option>
-					<option value="x-4">-4</option>
-					<option value="x-3">-3</option>
-					<option value="x-2">-2</option>
-					<option value="x-1">-1</option>
-					<option value="x0" selected="selected">0</option>
-					<option value="x+1">+1</option>
-					<option value="x+2">+2</option>
-					<option value="x+3">+3</option>
-					<option value="x+4">+4</option>
-					<option value="x+5">+5</option>
-					<option value="x+6">+6</option>
+					<option value="-6">-6</option>
+					<option value="-5">-5</option>
+					<option value="-4">-4</option>
+					<option value="-3">-3</option>
+					<option value="-2">-2</option>
+					<option value="-1">-1</option>
+					<option value="0" selected="selected">0</option>
+					<option value="+1">+1</option>
+					<option value="+2">+2</option>
+					<option value="+3">+3</option>
+					<option value="+4">+4</option>
+					<option value="+5">+5</option>
+					<option value="+6">+6</option>
 				</select>
 			</div>
 			<div class="Column">
 				<select id="mod_def">
-					<option value="x-6">-6</option>
-					<option value="x-5">-5</option>
-					<option value="x-4">-4</option>
-					<option value="x-3">-3</option>
-					<option value="x-2">-2</option>
-					<option value="x-1">-1</option>
-					<option value="x0" selected="selected">0</option>
-					<option value="x+1">+1</option>
-					<option value="x+2">+2</option>
-					<option value="x+3">+3</option>
-					<option value="x+4">+4</option>
-					<option value="x+5">+5</option>
-					<option value="x+6">+6</option>
+					<option value="-6">-6</option>
+					<option value="-5">-5</option>
+					<option value="-4">-4</option>
+					<option value="-3">-3</option>
+					<option value="-2">-2</option>
+					<option value="-1">-1</option>
+					<option value="0" selected="selected">0</option>
+					<option value="+1">+1</option>
+					<option value="+2">+2</option>
+					<option value="+3">+3</option>
+					<option value="+4">+4</option>
+					<option value="+5">+5</option>
+					<option value="+6">+6</option>
 				</select>
 			</div>
 			<div class="Column">
@@ -217,12 +359,13 @@
 		</div>
 		<div class="Row">
 			<div class="Column">
-				<button id="calc_dmg" onclick="get_dmg()">Вычислить урон</button>
+				<button id="calc_dmg" onclick="get_dmg()" style="width: 70%">Вычислить урон</button>
 			</div>
 			<div class="Column">
-				<button id="calc_dmg" onclick="test()" style="width: 70%">Тест</button>
+				<button id="clear_btn" onclick="clear_calc()" style="width: 70%">Очистить</button>
 			</div>
 			<div class="Column">
+				<button id="test_calc" onclick="test()" style="width: 70%">Тест</button>
 			</div>
 			<div class="Column">
 			</div>
