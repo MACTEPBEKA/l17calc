@@ -17,6 +17,11 @@
     display: table-cell;
 }
 </style>
+<script>
+	function get_dmg() {
+		min_dmg.textContent = "SENPAI лалка";
+	}
+</script>	
 	
 	<div name="dmg_calc">
 	
@@ -135,8 +140,39 @@
 			<div class="Column">
 			</div>
 		</div>
+		
+		<button id="calc_dmg" onclick="get_dmg()">Вычислить урон</button>
+		
+		<div class="Row">
+			<div class="Column">
+				Минимальный урон
+				<div id="min_dmg">
+					
+				</div>
+			</div>
+			<div class="Column">
+				Максимальный урон
+				<div id="max_dmg">
+				
+				</div>
+			</div>
+			<div class="Column">
+				Максимальный урон c крита
+				<div id="max_dmg">
+				
+				</div>
+			</div>
+			<div class="Column">
+			</div>
+			<div class="Column">
+			</div>
+			<div class="Column">
+			</div>
+			<div class="Column">
+			</div>
+		</div>
 	</div>
 	
-	<button id="calc_dmg">Вычислить урон</button>
+	
 </body>
 </html>
