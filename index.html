@@ -5,23 +5,137 @@
 	<title>Калькулятор урона</title>
 </head>
 <body>
-	<!-- поле ввода первого числа -->
-	<input id="lvl" type="number" >
-	<input id="power" type="number" >
-	<input id="att" type="number" >
-	<input id="def" type="number" >
-	<select id="dmg_eff">
-		<option value="x025">x0.25</option>
-		<option value="x05">x0.5</option>
-		<option value="x1">x1</option>
-		<option value="x2">x2</option>
-		<option value="x4">x4</option>
-	</select>
-	<input id="stab" type="number" >
-	<input id="item" type="number" >
-	<input id="in_fire" type="checkbox" >
-	<input id="screen" type="checkbox" >
-	<input id="item" type="number" >
+
+<style>
+.Row {
+    display: table;
+    width: 90%; /*Optional*/
+    table-layout: fixed; /*Optional*/
+    border-spacing: 10px; /*Optional*/
+}
+.Column {
+    display: table-cell;
+}
+</style>
+	
+	<div name="dmg_calc">
+	
+		<div class="Row">
+			<div class="Column">
+				Уровень
+				<div>
+					<input id="lvl" type="number" >
+				</div>
+			</div>
+			<div class="Column">
+				Мощность
+				<div>
+					<input id="power" type="number" >
+				</div>
+			</div>
+			<div class="Column">
+				Стат атаки
+				<div>
+					<input id="att" type="number" >
+				</div>
+			</div>
+			<div class="Column">
+				Стат защиты
+				<div>
+					<input id="def" type="number" >
+				</div>
+			</div>
+			<div class="Column">
+				Эффективность атаки
+				<div>
+					<select id="eff">
+						<option value="x025">x0.25</option>
+						<option value="x05">x0.5</option>
+						<option value="x1" selected="selected">x1</option>
+						<option value="x2">x2</option>
+						<option value="x4">x4</option>
+					</select>
+				</div>
+			</div>
+			<div class="Column">
+				Стабовая
+				<div>
+					<input id="stab" type="checkbox" >
+				</div>
+			</div>
+			<div class="Column">
+				Предмет
+				<div>
+					<select id="item">
+						<option value="None" selected="selected">Отсутствует</option>
+						<option value="x1.1">Стабовый</option>
+						<option value="x1.25">Сфера ярости</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="Row">
+			<div class="Column">
+				В огне
+				<div>
+					<input id="in_fire" type="checkbox" >
+				</div>
+			</div>
+			<div class="Column">
+				Экран
+				<div>
+					<input id="screen" type="checkbox" >
+				</div>
+			</div>
+			<div class="Column">
+				Модификация атаки
+				<div>
+					<select id="mod_att">
+						<option value="x-6">-6</option>
+						<option value="x-5">-5</option>
+						<option value="x-4">-4</option>
+						<option value="x-3">-3</option>
+						<option value="x-2">-2</option>
+						<option value="x-1">-1</option>
+						<option value="x0" selected="selected">0</option>
+						<option value="x+1">+1</option>
+						<option value="x+2">+2</option>
+						<option value="x+3">+3</option>
+						<option value="x+4">+4</option>
+						<option value="x+5">+5</option>
+						<option value="x+6">+6</option>
+					</select>
+				</div>
+			</div>
+			<div class="Column">
+				Модификация защиты
+				<div>
+					<select id="mod_def">
+						<option value="x-6">-6</option>
+						<option value="x-5">-5</option>
+						<option value="x-4">-4</option>
+						<option value="x-3">-3</option>
+						<option value="x-2">-2</option>
+						<option value="x-1">-1</option>
+						<option value="x0" selected="selected">0</option>
+						<option value="x+1">+1</option>
+						<option value="x+2">+2</option>
+						<option value="x+3">+3</option>
+						<option value="x+4">+4</option>
+						<option value="x+5">+5</option>
+						<option value="x+6">+6</option>
+					</select>
+				</div>
+			</div>
+			<div class="Column">
+			
+			</div>
+			<div class="Column">
+			</div>
+			<div class="Column">
+			</div>
+		</div>
+	</div>
 	
 	<button id="calc_dmg">Вычислить урон</button>
 </body>
