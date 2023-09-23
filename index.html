@@ -7,19 +7,18 @@
 <body>
 
 <style>
-.Row {
-    display: table;
-    width: 90%; /*Optional*/
-    table-layout: fixed; /*Optional*/
-    border-spacing: 10px; /*Optional*/
-}
-.Column {
-    display: table-cell;
-}
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
+	.Row {
+		display: table;
+		width: 90%; /*Optional*/
+		table-layout: fixed; /*Optional*/
+	}
+	.Column {
+		display: table-cell;
+	}
+	input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
 </style>
 <script>
 	function get_dmg() {
@@ -64,113 +63,123 @@ input::-webkit-inner-spin-button {
 </script>	
 	
 	<div name="dmg_calc">
-	
 		<div class="Row">
 			<div class="Column">
 				Уровень
-				<div>
-					<input id="lvl" type="number" >
-				</div>
 			</div>
 			<div class="Column">
 				Мощность
-				<div>
-					<input id="base" type="number" >
-				</div>
 			</div>
 			<div class="Column">
 				Стат атаки
-				<div>
-					<input id="att" type="number" >
-				</div>
 			</div>
 			<div class="Column">
 				Стат защиты
-				<div>
-					<input id="def" type="number" >
-				</div>
 			</div>
 			<div class="Column">
-				Эффективность атаки
-				<div>
-					<select id="type">
-						<option value="x025">x0.25</option>
-						<option value="x05">x0.5</option>
-						<option value="x1" selected="selected">x1</option>
-						<option value="x2">x2</option>
-						<option value="x4">x4</option>
-					</select>
-				</div>
+				Эфф. типа
 			</div>
 			<div class="Column">
 				Стабовая
-				<div>
-					<input id="stab" type="checkbox" >
-				</div>
 			</div>
 			<div class="Column">
 				Предмет
-				<div>
-					<select id="item">
-						<option value="None" selected="selected">Отсутствует</option>
-						<option value="x1.1">Стабовый</option>
-						<option value="x1.25">Сфера ярости</option>
-					</select>
-				</div>
 			</div>
 		</div>
 		<div class="Row">
 			<div class="Column">
+				<input id="lvl" type="number" >
+			</div>
+			<div class="Column">
+				<input id="base" type="number" >
+			</div>
+			<div class="Column">
+				<input id="att" type="number" >
+			</div>
+			<div class="Column">
+				<input id="def" type="number" >
+			</div>
+			<div class="Column">
+				<select id="type">
+					<option value="x025">x0.25</option>
+					<option value="x05">x0.5</option>
+					<option value="x1" selected="selected">x1</option>
+					<option value="x2">x2</option>
+					<option value="x4">x4</option>
+				</select>
+			</div>
+			<div class="Column">
+				<input id="stab" type="checkbox" >
+			</div>
+			<div class="Column">
+				<select id="item">
+					<option value="None" selected="selected">Отсутствует</option>
+					<option value="x1.1">Стабовый</option>
+					<option value="x1.25">Сфера ярости</option>
+				</select>
+			</div>
+		</div>
+		<div class="Row" style="margin-top: 20px">
+			<div class="Column">
 				В огне
-				<div>
-					<input id="in_fire" type="checkbox" >
-				</div>
 			</div>
 			<div class="Column">
 				Экран
-				<div>
-					<input id="screen" type="checkbox" >
-				</div>
 			</div>
 			<div class="Column">
 				Модификация атаки
-				<div>
-					<select id="mod_att">
-						<option value="x-6">-6</option>
-						<option value="x-5">-5</option>
-						<option value="x-4">-4</option>
-						<option value="x-3">-3</option>
-						<option value="x-2">-2</option>
-						<option value="x-1">-1</option>
-						<option value="x0" selected="selected">0</option>
-						<option value="x+1">+1</option>
-						<option value="x+2">+2</option>
-						<option value="x+3">+3</option>
-						<option value="x+4">+4</option>
-						<option value="x+5">+5</option>
-						<option value="x+6">+6</option>
-					</select>
-				</div>
 			</div>
 			<div class="Column">
 				Модификация защиты
-				<div>
-					<select id="mod_def">
-						<option value="x-6">-6</option>
-						<option value="x-5">-5</option>
-						<option value="x-4">-4</option>
-						<option value="x-3">-3</option>
-						<option value="x-2">-2</option>
-						<option value="x-1">-1</option>
-						<option value="x0" selected="selected">0</option>
-						<option value="x+1">+1</option>
-						<option value="x+2">+2</option>
-						<option value="x+3">+3</option>
-						<option value="x+4">+4</option>
-						<option value="x+5">+5</option>
-						<option value="x+6">+6</option>
-					</select>
-				</div>
+			</div>
+			<div class="Column">
+			</div>
+			<div class="Column">
+			</div>
+			<div class="Column">
+				Асборбер
+			</div>			
+		</div>
+		<div class="Row">
+			<div class="Column">
+				<input id="in_fire" type="checkbox" >
+			</div>
+			<div class="Column">
+				<input id="screen" type="checkbox" >
+			</div>
+			<div class="Column">
+				<select id="mod_att">
+					<option value="x-6">-6</option>
+					<option value="x-5">-5</option>
+					<option value="x-4">-4</option>
+					<option value="x-3">-3</option>
+					<option value="x-2">-2</option>
+					<option value="x-1">-1</option>
+					<option value="x0" selected="selected">0</option>
+					<option value="x+1">+1</option>
+					<option value="x+2">+2</option>
+					<option value="x+3">+3</option>
+					<option value="x+4">+4</option>
+					<option value="x+5">+5</option>
+					<option value="x+6">+6</option>
+				</select>
+			</div>
+			<div class="Column">
+				<select id="mod_def">
+					<option value="x-6">-6</option>
+					<option value="x-5">-5</option>
+					<option value="x-4">-4</option>
+					<option value="x-3">-3</option>
+					<option value="x-2">-2</option>
+					<option value="x-1">-1</option>
+					<option value="x0" selected="selected">0</option>
+					<option value="x+1">+1</option>
+					<option value="x+2">+2</option>
+					<option value="x+3">+3</option>
+					<option value="x+4">+4</option>
+					<option value="x+5">+5</option>
+					<option value="x+6">+6</option>
+				</select>
 			</div>
 			<div class="Column">
 			
@@ -178,34 +187,39 @@ input::-webkit-inner-spin-button {
 			<div class="Column">
 			</div>
 			<div class="Column">
-				Абсорбер
-				<div>
-					<input id="absorb" type="checkbox" >
-				</div>
+				<input id="absorb" type="checkbox" >
 			</div>
 		</div>
 		
+		<div style="margin-top: 20px">
 		<button id="calc_dmg" onclick="get_dmg()">Вычислить урон</button>
 		<button id="calc_dmg" onclick="test()">Тест</button>
-		
-		<div class="Row">
+		</div>
+		<div class="Row" style="margin-top: 20px">
 			<div class="Column">
 				Минимальный урон
-				<div id="min_dmg">
-					
-				</div>
 			</div>
 			<div class="Column">
 				Максимальный урон
-				<div id="max_dmg">
-				
-				</div>
 			</div>
 			<div class="Column">
 				Максимальный урон c крита
-				<div id="maxcrit_dmg">
-				
-				</div>
+			</div>
+			<div class="Column">
+			</div>
+			<div class="Column">
+			</div>
+			<div class="Column">
+			</div>
+			<div class="Column">
+			</div>
+		</div>
+		<div class="Row">
+			<div class="Column" id="min_dmg">
+			</div>
+			<div class="Column" id="max_dmg">
+			</div>
+			<div class="Column" id="maxcrit_dmg">
 			</div>
 			<div class="Column">
 			</div>
