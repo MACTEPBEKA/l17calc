@@ -27,14 +27,14 @@
 </style>
 <script>
 	function get_dmg() {
-		if (stab.checked){
+		if (dmg_stab.checked){
 			stab_coef = 1.5;
 		} else {
 			stab_coef = 1;
 		}
 		
 		
-		switch (type.value) {
+		switch (dmg_type.value) {
 			case "x025":
 				type_coef = 0.25;
 				break;
@@ -55,115 +55,115 @@
 				break;
 		}
 		
-		switch (mod_att.value) {
+		switch (dmg_mod_att.value) {
 			case "-6":
-				att_stat = att.value*2/(2+6);
+				att_stat = dmg_att.value*2/(2+6);
 				break;
 			case "-5":
-				att_stat = att.value*2/(2+5);
+				att_stat = dmg_att.value*2/(2+5);
 				break;
 			case "-4":
-				att_stat = att.value*2/(2+4);
+				att_stat = dmg_att.value*2/(2+4);
 				break;
 			case "-3":
-				att_stat = att.value*2/(2+3);
+				att_stat = dmg_att.value*2/(2+3);
 				break;
 			case "-2":
-				att_stat = att.value*2/(2+2);
+				att_stat = dmg_att.value*2/(2+2);
 				break;
 			case "-1":
-				att_stat = att.value*2/(2+1);
+				att_stat = dmg_att.value*2/(2+1);
 				break;
 			case "0":
-				att_stat = att.value;
+				att_stat = dmg_att.value;
 				break;
 			case "+1":
-				att_stat = att.value*(2+1)/2;
+				att_stat = dmg_att.value*(2+1)/2;
 				break;
 			case "+2":
-				att_stat = att.value*(2+2)/2;
+				att_stat = dmg_att.value*(2+2)/2;
 				break;
 			case "+3":
-				att_stat = att.value*(2+3)/2;
+				att_stat = dmg_att.value*(2+3)/2;
 				break;
 			case "+4":
-				att_stat = att.value*(2+4)/2;
+				att_stat = dmg_att.value*(2+4)/2;
 				break;
 			case "+5":
-				att_stat = att.value*(2+5)/2;
+				att_stat = dmg_att.value*(2+5)/2;
 				break;
 			case "+6":
-				att_stat = att.value*(2+6)/2;
+				att_stat = dmg_att.value*(2+6)/2;
 				break;
 			default:
 				alert("Ошибка при вычислении модификацированного стата атаки");
 				break;
 		}
 		
-		switch (mod_def.value) {
+		switch (dmg_mod_def.value) {
 			case "-6":
-				def_stat = def.value*2/(2+6);
+				def_stat = dmg_def.value*2/(2+6);
 				break;
 			case "-5":
-				def_stat = def.value*2/(2+5);
+				def_stat = dmg_def.value*2/(2+5);
 				break;
 			case "-4":
-				def_stat = def.value*2/(2+4);
+				def_stat = dmg_def.value*2/(2+4);
 				break;
 			case "-3":
-				def_stat = def.value*2/(2+3);
+				def_stat = dmg_def.value*2/(2+3);
 				break;
 			case "-2":
-				def_stat = def.value*2/(2+2);
+				def_stat = dmg_def.value*2/(2+2);
 				break;
 			case "-1":
-				def_stat = def.value*2/(2+1);
+				def_stat = dmg_def.value*2/(2+1);
 				break;
 			case "0":
-				def_stat = def.value;
+				def_stat = dmg_def.value;
 				break;
 			case "+1":
-				def_stat = def.value*(2+1)/2;
+				def_stat = dmg_def.value*(2+1)/2;
 				break;
 			case "+2":
-				def_stat = def.value*(2+2)/2;
+				def_stat = dmg_def.value*(2+2)/2;
 				break;
 			case "+3":
-				def_stat = def.value*(2+3)/2;
+				def_stat = dmg_def.value*(2+3)/2;
 				break;
 			case "+4":
-				def_stat = def.value*(2+4)/2;
+				def_stat = dmg_def.value*(2+4)/2;
 				break;
 			case "+5":
-				def_stat = def.value*(2+5)/2;
+				def_stat = dmg_def.value*(2+5)/2;
 				break;
 			case "+6":
-				def_stat = def.value*(2+6)/2;
+				def_stat = dmg_def.value*(2+6)/2;
 				break;
 			default:
 				alert("Ошибка при вычислении модификацированного стата защиты");
 				break;
 		}
 		
-		if (in_fire.checked){
+		if (dmg_in_fire.checked){
 			in_fire_coef = 0.5;
 		} else {
 			in_fire_coef = 1;
 		}
 				
-		if (screen.checked){
+		if (dmg_screen.checked){
 			screen_coef = 0.5;
 		} else {
 			screen_coef = 1;
 		}
 		
-		if (absorb.checked){
+		if (dmg_absorb.checked){
 			absorb_coef = 0.9;
 		} else {
 			absorb_coef = 1;
 		}
 		
-		switch (item.value) {
+		switch (dmg_item.value) {
 			case "Отсутствует":
 				item_coef = 1;
 				break;
@@ -180,36 +180,224 @@
 		
 		oth = 1 * absorb_coef * screen_coef * in_fire_coef * item_coef;
 		
-		dmg = ((2*lvl.value + 10)/250*att_stat/def_stat*base.value + 2)*stab_coef*type_coef*oth
+		dmg = ((2*dmg_lvl.value + 10)/250*att_stat/def_stat*dmg_base.value + 2)*stab_coef*type_coef*oth;
 		
 		min_dmg.textContent = Math.floor(dmg * 0.85);
 		max_dmg.textContent = Math.floor(dmg);
 		maxcrit_dmg.textContent = Math.floor(dmg * 1.5);
 		
 	}
-	function test() {
-		lvl.value = 78;
-		att.value = 245;
-		def.value = 261;
-		base.value = 40;
-		stab.checked = true;
+	function dmg_test() {
+		dmg_lvl.value = 78;
+		dmg_att.value = 245;
+		dmg_def.value = 261;
+		dmg_base.value = 40;
+		dmg_stab.checked = true;
 	}
-	function clear_calc() {
-		lvl.value = null;
-		att.value = null;
-		def.value = null;
-		base.value = null;
-		stab.checked = false;
-		item.value = "Отсутствует";
-		in_fire.checked = false;
-		screen.checked = false;
-		mod_att.value = "0";
-		mod_def.value = "0";
-		absorb.checked = false;
+	function clear_dmg_calc() {
+		dmg_lvl.value = null;
+		dmg_att.value = null;
+		dmg_def.value = null;
+		dmg_base.value = null;
+		dmg_stab.checked = false;
+		dmg_item.value = "Отсутствует";
+		dmg_in_fire.checked = false;
+		dmg_screen.checked = false;
+		dmg_mod_att.value = "0";
+		dmg_mod_def.value = "0";
+		dmg_absorb.checked = false;
 	}
+
+	function get_att() {
+		
+		if (att_stab.checked){
+			stab_coef = 1.5;
+		} else {
+			stab_coef = 1;
+		}
+		
+		if (att_crit.checked){
+			crit_coef = 1.5;
+		} else {
+			crit_coef = 1;
+		}
+		
+		switch (att_type.value) {
+			case "x025":
+				type_coef = 0.25;
+				break;
+			case "x05":
+				type_coef = 0.5;
+				break;
+			case "x1":
+				type_coef = 1;
+				break;
+			case "x2":
+				type_coef = 2;
+				break;
+			case "x4":
+				type_coef = 4;
+				break;
+			default:
+				alert("Error!");
+				break;
+		}
+		
+		switch (att_mod_att.value) {
+			case "-6":
+				att_coef = 2/(2+6);
+				break;
+			case "-5":
+				att_coef = 2/(2+5);
+				break;
+			case "-4":
+				att_coef = 2/(2+4);
+				break;
+			case "-3":
+				att_coef = 2/(2+3);
+				break;
+			case "-2":
+				att_coef = 2/(2+2);
+				break;
+			case "-1":
+				att_coef = 2/(2+1);
+				break;
+			case "0":
+				att_coef = 1;
+				break;
+			case "+1":
+				att_coef = (2+1)/2;
+				break;
+			case "+2":
+				att_coef = (2+2)/2;
+				break;
+			case "+3":
+				att_coef = (2+3)/2;
+				break;
+			case "+4":
+				att_coef = (2+4)/2;
+				break;
+			case "+5":
+				att_coef = (2+5)/2;
+				break;
+			case "+6":
+				att_coef = (2+6)/2;
+				break;
+			default:
+				alert("Ошибка при вычислении модификацированного стата атаки");
+				break;
+		}
+		
+		switch (att_mod_def.value) {
+			case "-6":
+				def_coef = 2/(2+6);
+				break;
+			case "-5":
+				def_coef = 2/(2+5);
+				break;
+			case "-4":
+				def_coef = 2/(2+4);
+				break;
+			case "-3":
+				def_coef = 2/(2+3);
+				break;
+			case "-2":
+				def_coef = 2/(2+2);
+				break;
+			case "-1":
+				def_coef = 2/(2+1);
+				break;
+			case "0":
+				def_coef = 1;
+				break;
+			case "+1":
+				def_coef = (2+1)/2;
+				break;
+			case "+2":
+				def_coef = (2+2)/2;
+				break;
+			case "+3":
+				def_coef = (2+3)/2;
+				break;
+			case "+4":
+				def_coef = (2+4)/2;
+				break;
+			case "+5":
+				def_coef = (2+5)/2;
+				break;
+			case "+6":
+				def_coef = (2+6)/2;
+				break;
+			default:
+				alert("Ошибка при вычислении модификацированного стата защиты");
+				break;
+		}
+		
+		if (att_in_fire.checked){
+			in_fire_coef = 0.5;
+		} else {
+			in_fire_coef = 1;
+		}
+				
+		if (att_screen.checked){
+			screen_coef = 0.5;
+		} else {
+			screen_coef = 1;
+		}
+		
+		if (att_absorb.checked){
+			absorb_coef = 0.9;
+		} else {
+			absorb_coef = 1;
+		}
+		
+		switch (att_item.value) {
+			case "Отсутствует":
+				item_coef = 1;
+				break;
+			case "Стабовый":
+				item_coef = 1.1;
+				break;
+			case "Сфера ярости":
+				item_coef = 1.25;
+				break;
+			default:
+				alert("Ошибка при вычислении усиления предметом");
+				break;
+		}
+		
+		oth = 1 * absorb_coef * screen_coef * in_fire_coef * item_coef;
+		
+		min_att.textContent = Math.floor((Number(att_dmg.value)/(1*oth*crit_coef*type_coef*stab_coef)-2)*(250*Number(att_def.value)*def_coef)/((2*Number(att_lvl.value)+10)*Number(att_base.value))/att_coef);
+		max_att.textContent = Math.floor(((Number(att_dmg.value) + 1)/(1*oth*crit_coef*type_coef*stab_coef)-2)*(250*Number(att_def.value)*def_coef)/((2*Number(att_lvl.value)+10)*Number(att_base.value))/att_coef);
+		
+		
+	}
+	function att_test() {
+		att_lvl.value = 78;
+		att_dmg.value = 35;
+		att_def.value = 261;
+		att_base.value = 40;
+		att_stab.checked = true;
+	}
+	function clear_att_calc() {
+		att_lvl.value = null;
+		att_att.value = null;
+		att_def.value = null;
+		att_base.value = null;
+		att_stab.checked = false;
+		att_item.value = "Отсутствует";
+		att_in_fire.checked = false;
+		att_screen.checked = false;
+		att_mod_att.value = "0";
+		att_mod_def.value = "0";
+		att_absorb.checked = false;
+	}
+
 </script>	
-	
+	<p>Калькулятор урона</p>
 	<div name="dmg_calc" class="div-border">
+	
 		<div class="Row">
 			<div class="Column">
 				Уровень
@@ -235,19 +423,19 @@
 		</div>
 		<div class="Row">
 			<div class="Column">
-				<input id="lvl" type="number" style="width: 70%">
+				<input id="dmg_lvl" type="number" style="width: 70%">
 			</div>
 			<div class="Column">
-				<input id="base" type="number" style="width: 70%">
+				<input id="dmg_base" type="number" style="width: 70%">
 			</div>
 			<div class="Column">
-				<input id="att" type="number" style="width: 70%">
+				<input id="dmg_att" type="number" style="width: 70%">
 			</div>
 			<div class="Column">
-				<input id="def" type="number" style="width: 70%">
+				<input id="dmg_def" type="number" style="width: 70%">
 			</div>
 			<div class="Column">
-				<select id="type">
+				<select id="dmg_type">
 					<option value="x025">x0.25</option>
 					<option value="x05">x0.5</option>
 					<option value="x1" selected="selected">x1</option>
@@ -256,10 +444,10 @@
 				</select>
 			</div>
 			<div class="Column">
-				<input id="stab" type="checkbox" >
+				<input id="dmg_stab" type="checkbox" >
 			</div>
 			<div class="Column">
-				<select id="item">
+				<select id="dmg_item">
 					<option value="Отсутствует" selected="selected">Отсутствует</option>
 					<option value="Стабовый">Стабовый</option>
 					<option value="Сфера ярости">Сфера ярости</option>
@@ -280,8 +468,10 @@
 				Модификация защиты
 			</div>
 			<div class="Column">
+				Способность атакующего
 			</div>
 			<div class="Column">
+				Способность атакуемого
 			</div>
 			<div class="Column">
 				Асборбер
@@ -289,13 +479,13 @@
 		</div>
 		<div class="Row">
 			<div class="Column">
-				<input id="in_fire" type="checkbox" >
+				<input id="dmg_in_fire" type="checkbox" >
 			</div>
 			<div class="Column">
-				<input id="screen" type="checkbox" >
+				<input id="dmg_screen" type="checkbox" >
 			</div>
 			<div class="Column">
-				<select id="mod_att">
+				<select id="dmg_mod_att">
 					<option value="-6">-6</option>
 					<option value="-5">-5</option>
 					<option value="-4">-4</option>
@@ -312,7 +502,7 @@
 				</select>
 			</div>
 			<div class="Column">
-				<select id="mod_def">
+				<select id="dmg_mod_def">
 					<option value="-6">-6</option>
 					<option value="-5">-5</option>
 					<option value="-4">-4</option>
@@ -329,12 +519,13 @@
 				</select>
 			</div>
 			<div class="Column">
-			
+				<b>В разработке</b>
 			</div>
 			<div class="Column">
+				<b>В разработке</b>
 			</div>
 			<div class="Column">
-				<input id="absorb" type="checkbox" >
+				<input id="dmg_absorb" type="checkbox" >
 			</div>
 		</div>
 		
@@ -359,13 +550,13 @@
 		</div>
 		<div class="Row">
 			<div class="Column">
-				<button id="calc_dmg" onclick="get_dmg()" style="width: 70%">Вычислить урон</button>
+				<button id="dmg_calc" onclick="get_dmg()" style="width: 70%">Вычислить урон</button>
 			</div>
 			<div class="Column">
-				<button id="clear_btn" onclick="clear_calc()" style="width: 70%">Очистить</button>
+				<button id="dmg_clear_btn" onclick="clear_dmg_calc()" style="width: 70%">Очистить</button>
 			</div>
 			<div class="Column">
-				<button id="test_calc" onclick="test()" style="width: 70%">Тест</button>
+				<button id="dmg_test_calc" onclick="dmg_test()" style="width: 70%">Тест</button>
 			</div>
 			<div class="Column">
 			</div>
@@ -377,7 +568,180 @@
 			</div>
 		</div>
 	</div>
-	
+	<p>Калькулятор стата атаки по урону</p>
+	<div name="att_calc" class="div-border"  style="margin-top: 20px">
+		<div class="Row">
+			<div class="Column">
+				Уровень
+			</div>
+			<div class="Column">
+				Мощность
+			</div>
+			<div class="Column">
+				Полученный урон
+			</div>
+			<div class="Column">
+				Стат защиты
+			</div>
+			<div class="Column">
+				Эфф. типа
+			</div>
+			<div class="Column">
+				Стабовая
+			</div>
+			<div class="Column">
+				Предмет
+			</div>
+		</div>
+		<div class="Row">
+			<div class="Column">
+				<input id="att_lvl" type="number" style="width: 70%">
+			</div>
+			<div class="Column">
+				<input id="att_base" type="number" style="width: 70%">
+			</div>
+			<div class="Column">
+				<input id="att_dmg" type="number" style="width: 70%">
+			</div>
+			<div class="Column">
+				<input id="att_def" type="number" style="width: 70%">
+			</div>
+			<div class="Column">
+				<select id="att_type">
+					<option value="x025">x0.25</option>
+					<option value="x05">x0.5</option>
+					<option value="x1" selected="selected">x1</option>
+					<option value="x2">x2</option>
+					<option value="x4">x4</option>
+				</select>
+			</div>
+			<div class="Column">
+				<input id="att_stab" type="checkbox" >
+			</div>
+			<div class="Column">
+				<select id="att_item">
+					<option value="Отсутствует" selected="selected">Отсутствует</option>
+					<option value="Стабовый">Стабовый</option>
+					<option value="Сфера ярости">Сфера ярости</option>
+				</select>
+			</div>
+		</div>
+		<div class="Row" style="margin-top: 20px">
+			<div class="Column">
+				В огне
+			</div>
+			<div class="Column">
+				Экран
+			</div>
+			<div class="Column">
+				Модификация атаки
+			</div>
+			<div class="Column">
+				Модификация защиты
+			</div>
+			<div class="Column">
+				Способность атакующего
+			</div>
+			<div class="Column">
+				Способность атакуемого
+			</div>
+			<div class="Column">
+				Асборбер
+			</div>			
+		</div>
+		<div class="Row">
+			<div class="Column">
+				<input id="att_in_fire" type="checkbox" >
+			</div>
+			<div class="Column">
+				<input id="att_screen" type="checkbox" >
+			</div>
+			<div class="Column">
+				<select id="att_mod_att">
+					<option value="-6">-6</option>
+					<option value="-5">-5</option>
+					<option value="-4">-4</option>
+					<option value="-3">-3</option>
+					<option value="-2">-2</option>
+					<option value="-1">-1</option>
+					<option value="0" selected="selected">0</option>
+					<option value="+1">+1</option>
+					<option value="+2">+2</option>
+					<option value="+3">+3</option>
+					<option value="+4">+4</option>
+					<option value="+5">+5</option>
+					<option value="+6">+6</option>
+				</select>
+			</div>
+			<div class="Column">
+				<select id="att_mod_def">
+					<option value="-6">-6</option>
+					<option value="-5">-5</option>
+					<option value="-4">-4</option>
+					<option value="-3">-3</option>
+					<option value="-2">-2</option>
+					<option value="-1">-1</option>
+					<option value="0" selected="selected">0</option>
+					<option value="+1">+1</option>
+					<option value="+2">+2</option>
+					<option value="+3">+3</option>
+					<option value="+4">+4</option>
+					<option value="+5">+5</option>
+					<option value="+6">+6</option>
+				</select>
+			</div>
+			<div class="Column">
+				 <b>В разработке</b>
+			</div>
+			<div class="Column">
+				<b>В разработке</b>
+			</div>
+			<div class="Column">
+				<input id="att_absorb" type="checkbox" >
+			</div>
+		</div>
+		
+		<div class="Row" style="margin-top: 20px">
+			<div class="Column">
+			</div>
+			<div class="Column">
+			</div>
+			<div class="Column">
+			</div>
+			<div class="Column">
+				Крит
+			</div>
+			<div class="Column">
+			</div>
+			<div class="Column">
+				Минимальный стат атаки
+			</div>
+			<div class="Column">
+				Максимальный стат атаки
+			</div>
+		</div>
+		<div class="Row">
+			<div class="Column">
+				<button id="att_calc" onclick="get_att()" style="width: 70%">Вычислить урон</button>
+			</div>
+			<div class="Column">
+				<button id="att_clear_btn" onclick="clear_att_calc()" style="width: 70%">Очистить</button>
+			</div>
+			<div class="Column">
+				<button id="att_test_calc" onclick="att_test()" style="width: 70%">Тест</button>
+			</div>
+			<div class="Column">
+				<input id="att_crit" type="checkbox" >
+			</div>
+			<div class="Column">
+			</div>
+			<div class="Column" id="min_att">
+			</div>
+			<div class="Column" id="max_att">
+			</div>
+		</div>
+		
+	</div>
 	
 </body>
 </html>
