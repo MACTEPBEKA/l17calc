@@ -370,7 +370,7 @@
 		oth = 1 * absorb_coef * screen_coef * in_fire_coef * item_coef;
 		
 		min_att.textContent = Math.floor((Number(att_dmg.value)/(1*oth*crit_coef*type_coef*stab_coef)-2)*250/((2*Number(att_lvl.value)+10)*Number(att_base.value))*Number(att_def.value)*def_coef/att_coef);
-		max_att.textContent = Math.floor(((Number(att_dmg.value) + 1)/(0.85*oth*crit_coef*type_coef*stab_coef)-2)*250/((2*Number(att_lvl.value)+10)*Number(att_base.value))*Number(att_def.value)*def_coef/att_coef);
+		max_att.textContent = Math.floor((Number(att_dmg.value)/(0.85*oth*crit_coef*type_coef*stab_coef)-2)*250/((2*Number(att_lvl.value)+10)*Number(att_base.value))*Number(att_def.value)*def_coef/att_coef);
 		
 		
 	}
